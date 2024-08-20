@@ -43,4 +43,5 @@
 
 .active {
   filter: drop-shadow(0 0 1.5em #646cffaa);
+  border-color: #646cffaa;
 }

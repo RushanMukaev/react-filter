@@ -64,8 +64,6 @@ export const Portfolio = () => {
 
     function onSelectFilter(filter) {
       toolbar.selected = filter.target.textContent;
-      filter.target.parentElement.childNodes.forEach((el)=>(el.classList.remove(styles["active-filter"])));
-      filter.target.classList.add(styles["active-filter"]);
       if(toolbar.selected == "All") {
         filterState(projects);
       } else {
