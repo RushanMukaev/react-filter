@@ -4,10 +4,8 @@ import { ProjectList } from '../ProjectList/ProjectList';
 import styles from "./portfolio.module.css";
 
 export const Portfolio = () => {
-  const toolbar = {
-    filters: ["All", "Websites", "Flayers", "Business Cards"],
-    selected: "All"
-  };
+  const filters = ["All", "Websites", "Flayers", "Business Cards"]
+  const selected = "All"
   const projects = [{
     img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/mon.jpg",
     category: "Business Cards"
@@ -61,13 +59,14 @@ export const Portfolio = () => {
     category: "Flayers"
   }];
   const [projectsState, filterState] = useState(projects);
+  const [selectedProjects, setSelectedProjects] = useState(selected);
 
     function onSelectFilter(filter) {
-      toolbar.selected = filter.target.textContent;
-      if(toolbar.selected == "All") {
+      setSelectedProjects(filter.target.textContent)
+      if(filter.target.textContent === "All") {
         filterState(projects);
       } else {
-        filterState(projects.filter((project) => project.category === toolbar.selected));
+        filterState(projects.filter((project) => project.category === filter.target.textContent));
       }
     }
     
@@ -76,8 +75,8 @@ export const Portfolio = () => {
   return (
     <>
       <Toolbar 
-      filters={toolbar.filters}
-      selected={toolbar.selected}
+      filters={filters}
+      selected={selectedProjects}
       onSelectFilter={onSelectFilter}/>
       <ProjectList projects={projectsState}/>
     </>
